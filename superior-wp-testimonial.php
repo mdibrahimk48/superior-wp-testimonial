@@ -16,7 +16,19 @@
 
 
 /**
- * Enqueue Styles of this Plugin
+ * spwptm enqueue Styles of this Plugin
+ */
+
+function spwptm_enqueue_styles() {
+	wp_enqueue_style( 'spwptm-owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css' );
+	wp_enqueue_style( 'spwptm-owl-theme', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css' );
+	wp_enqueue_style( 'spwptm-style', plugins_url( 'css/spwptm_style.css', __FILE__) );
+}
+add_action( 'wp_enqueue_scripts', 'spwptm_enqueue_styles' );
+
+
+/**
+ * spwptm enqueue Scripts of this Plugin
  */
 
 function spwptm_enqueue_styles() {
