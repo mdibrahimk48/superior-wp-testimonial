@@ -31,12 +31,11 @@ add_action( 'wp_enqueue_scripts', 'spwptm_enqueue_styles' );
  * spwptm enqueue Scripts of this Plugin
  */
 
-function spwptm_enqueue_styles() {
-	wp_enqueue_style( 'spwptm-owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css' );
-	wp_enqueue_style( 'spwptm-owl-theme', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css' );
-	wp_enqueue_style( 'spwptm-style', plugins_url( 'css/spwptm_style.css', __FILE__) );
+function spwptm_enqueue_scripts() {
+	wp_enqueue_script( 'spwptm-jquery-min', 'https://code.jquery.com/jquery-1.12.0.min.js', array(), '1.0.0', true );
+	wp_enqueue_script( 'spwptm-owl-min', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js', array(), '1.0.0', true );
 }
-add_action( 'wp_enqueue_scripts', 'spwptm_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'spwptm_enqueue_scripts' );
 
  
 ?>
