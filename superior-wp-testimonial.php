@@ -155,6 +155,5 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 		}
 		?>
 			</div>
-		<?php
-		
+		<?php	
 ?>
