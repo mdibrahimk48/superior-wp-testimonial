@@ -133,8 +133,8 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
                     <p class="description"><?php the_excerpt(); ?></p>
                     <div class="testimonial-content">
                         <div class="testimonial-profile">
-                            <h3 class="name"></h3>
-                            <span class="post"></span>
+                            <h3 class="name"><?php echo get_post_meta( get_the_ID(), 'testi_name', true ); ?></h3>
+                            <span class="post"><?php echo get_post_meta( get_the_ID(), 'testi_desig', true ); ?></span>
                         </div>
                         <ul class="rating">
                             <li class="fa fa-star"></li>
@@ -158,27 +158,4 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 		</div>
 	<?php
 ?>
-
-
- 
-                <!-- <div class="testimonial">
-                    <div class="pic">
-                        <img src="images/img-2.jpg" alt="">
-                    </div>
-                    <h3 class="title">Lorem ipsum dolor</h3>
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non ante porttitor.</p>
-                    <div class="testimonial-content">
-                        <div class="testimonial-profile">
-                            <h3 class="name">Kristina</h3>
-                            <span class="post">Web Designer</span>
-                        </div>
-                        <ul class="rating">
-                            <li class="fa fa-star"></li>
-                            <li class="fa fa-star"></li>
-                            <li class="fa fa-star"></li>
-                            <li class="fa fa-star"></li>
-                            <li class="fa fa-star-half-empty"></li>
-                        </ul>
-                    </div>
-                </div> -->
             
