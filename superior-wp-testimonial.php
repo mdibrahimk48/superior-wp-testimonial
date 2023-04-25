@@ -18,7 +18,6 @@
 /**
  * spwptm enqueue styles of this Plugin
  */
-
 function spwptm_enqueue_styles() {
 	wp_enqueue_style( 'spwptm-owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css' );
 	wp_enqueue_style( 'spwptm-owl-theme', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css' );
@@ -29,7 +28,7 @@ add_action( 'wp_enqueue_scripts', 'spwptm_enqueue_styles' );
 
 /**
  * spwptm enqueue scripts of this Plugin
- */
+*/
 
 function spwptm_enqueue_scripts() {
 	wp_enqueue_script( 'spwptm-jquery-min', 'https://code.jquery.com/jquery-1.12.0.min.js', array(), '1.0.0', true );
@@ -39,16 +38,18 @@ function spwptm_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'spwptm_enqueue_scripts' );
 
 
-//Post Type Function
+/**
+ * Function - spwptm custom post type
+*/
 if ( ! function_exists('spwptm_custom_post_type') ) {
 
-	// Register Custom Post Type
+	// spwptm Register Custom Post Type
 	function spwptm_custom_post_type() {
 	
 		$labels = array(
 			'name'                  => _x( 'Testimonials', 'Post Type General Name', 'spwptm' ),
 			'singular_name'         => _x( 'Testimonial Type', 'Post Type Singular Name', 'spwptm' ),
-			'menu_name'             => __( 'Post Types', 'spwptm' ),
+			'menu_name'             => __( 'Testimonials', 'spwptm' ),
 			'name_admin_bar'        => __( 'Post Type', 'spwptm' ),
 			'archives'              => __( 'Item Archives', 'spwptm' ),
 			'attributes'            => __( 'Item Attributes', 'spwptm' ),
@@ -78,13 +79,12 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 			'label'                 => __( 'Testimonial Type', 'spwptm' ),
 			'description'           => __( 'Testimonial Description', 'spwptm' ),
 			'labels'                => $labels,
-			'supports'              => array( 'title', 'editor' ),
-			'taxonomies'            => array( 'category', 'post_tag' ),
+			'supports'              => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
+			'menu_icon'             => 'dashicons-testimonial', 
 			'hierarchical'          => false,
 			'public'                => true,
 			'show_ui'               => true,
 			'show_in_menu'          => true,
-			'menu_position'         => 5,
 			'show_in_admin_bar'     => true,
 			'show_in_nav_menus'     => true,
 			'can_export'            => true,
