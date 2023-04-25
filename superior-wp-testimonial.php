@@ -38,5 +38,67 @@ function spwptm_enqueue_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'spwptm_enqueue_scripts' );
 
- 
+
+//Post Type Function
+if ( ! function_exists('spwptm_custom_post_type') ) {
+
+	// Register Custom Post Type
+	function spwptm_custom_post_type() {
+	
+		$labels = array(
+			'name'                  => _x( 'Testimonials', 'Post Type General Name', 'spwptm' ),
+			'singular_name'         => _x( 'Testimonial Type', 'Post Type Singular Name', 'spwptm' ),
+			'menu_name'             => __( 'Post Types', 'spwptm' ),
+			'name_admin_bar'        => __( 'Post Type', 'spwptm' ),
+			'archives'              => __( 'Item Archives', 'spwptm' ),
+			'attributes'            => __( 'Item Attributes', 'spwptm' ),
+			'parent_item_colon'     => __( 'Parent Item:', 'spwptm' ),
+			'all_items'             => __( 'All Items', 'spwptm' ),
+			'add_new_item'          => __( 'Add New Item', 'spwptm' ),
+			'add_new'               => __( 'Add New', 'spwptm' ),
+			'new_item'              => __( 'New Item', 'spwptm' ),
+			'edit_item'             => __( 'Edit Item', 'spwptm' ),
+			'update_item'           => __( 'Update Item', 'spwptm' ),
+			'view_item'             => __( 'View Item', 'spwptm' ),
+			'view_items'            => __( 'View Items', 'spwptm' ),
+			'search_items'          => __( 'Search Item', 'spwptm' ),
+			'not_found'             => __( 'Not found', 'spwptm' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'spwptm' ),
+			'featured_image'        => __( 'Featured Image', 'spwptm' ),
+			'set_featured_image'    => __( 'Set featured image', 'spwptm' ),
+			'remove_featured_image' => __( 'Remove featured image', 'spwptm' ),
+			'use_featured_image'    => __( 'Use as featured image', 'spwptm' ),
+			'insert_into_item'      => __( 'Insert into item', 'spwptm' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this item', 'spwptm' ),
+			'items_list'            => __( 'Items list', 'spwptm' ),
+			'items_list_navigation' => __( 'Items list navigation', 'spwptm' ),
+			'filter_items_list'     => __( 'Filter items list', 'spwptm' ),
+		);
+		$args = array(
+			'label'                 => __( 'Testimonial Type', 'spwptm' ),
+			'description'           => __( 'Testimonial Description', 'spwptm' ),
+			'labels'                => $labels,
+			'supports'              => array( 'title', 'editor' ),
+			'taxonomies'            => array( 'category', 'post_tag' ),
+			'hierarchical'          => false,
+			'public'                => true,
+			'show_ui'               => true,
+			'show_in_menu'          => true,
+			'menu_position'         => 5,
+			'show_in_admin_bar'     => true,
+			'show_in_nav_menus'     => true,
+			'can_export'            => true,
+			'has_archive'           => true,
+			'exclude_from_search'   => false,
+			'publicly_queryable'    => true,
+			'capability_type'       => 'page',
+		);
+		register_post_type( 'testimonial', $args );
+	
+	}
+	add_action( 'init', 'spwptm_custom_post_type', 0 );
+	
+	}
+
+
 ?>
