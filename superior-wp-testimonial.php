@@ -18,7 +18,6 @@
 /**
  * spwptm enqueue styles of this Plugin
  */
-
 function spwptm_enqueue_styles() {
 	wp_enqueue_style( 'spwptm-owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css' );
 	wp_enqueue_style( 'spwptm-owl-theme', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css' );
@@ -81,7 +80,7 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 			'description'           => __( 'Testimonial Description', 'spwptm' ),
 			'labels'                => $labels,
 			'supports'              => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
-			'menu_icon'             => 'dashicons-testimonial',
+			'menu_icon'             => 'dashicons-testimonial', 
 			'hierarchical'          => false,
 			'public'                => true,
 			'show_ui'               => true,
