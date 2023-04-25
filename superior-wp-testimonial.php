@@ -100,5 +100,32 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 	
 	}
 
+	/**
+	 * spwptm post loop()
+	*/
+	function spwptm_testimonial_loop(){
+		// WP_Query arguments
+		$args = array(
+			'post_type'              => array( 'testimonial' ),
+			'post_status'            => array( 'publish' ),
+			'post_per_page'			 => 10
+		);
+
+		// The Query
+		$spwptm_query = new WP_Query( $args );
+
+		// The Loop
+		if ( $spwptm_query->have_posts() ) {
+			while ( $spwptm_query->have_posts() ) {
+				$spwptm_query->the_post();
+				// do something
+			}
+		} else {
+			// no posts found
+		}
+
+		// Restore original Post Data
+		wp_reset_postdata();
+	}
 
 ?>
