@@ -100,10 +100,14 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 	
 	}
 
+
 	/**
-	 * spwptm post loop()
+	* spwptm post loop()
 	*/
-	function spwptm_testimonial_loop(){
+	function spwptm_testimonial_loop(){ 
+	?>
+        <div id="testimonial-slider" class="owl-carousel">
+	<?php
 		// WP_Query arguments
 		$args = array(
 			'post_type'              => array( 'testimonial' ),
@@ -119,7 +123,30 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 			while ( $spwptm_query->have_posts() ) {
 				$spwptm_query->the_post();
 				// do something
-			}
+				?>
+
+                <div class="testimonial">
+                    <div class="pic">
+                        <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(),'full'); ?>" alt="<?php the_title(); ?>">
+                    </div>
+                    <h3 class="title"><?php the_title(); ?></h3>
+                    <p class="description"><?php the_excerpt(); ?></p>
+                    <div class="testimonial-content">
+                        <div class="testimonial-profile">
+                            <h3 class="name"></h3>
+                            <span class="post"></span>
+                        </div>
+                        <ul class="rating">
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star-half-empty"></li>
+                        </ul>
+                    </div>
+                </div>
+
+			<?php }
 		} else {
 			// no posts found
 		}
@@ -127,5 +154,31 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 		// Restore original Post Data
 		wp_reset_postdata();
 	}
-
+	?>
+		</div>
+	<?php
 ?>
+
+
+ 
+                <!-- <div class="testimonial">
+                    <div class="pic">
+                        <img src="images/img-2.jpg" alt="">
+                    </div>
+                    <h3 class="title">Lorem ipsum dolor</h3>
+                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non ante porttitor.</p>
+                    <div class="testimonial-content">
+                        <div class="testimonial-profile">
+                            <h3 class="name">Kristina</h3>
+                            <span class="post">Web Designer</span>
+                        </div>
+                        <ul class="rating">
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star"></li>
+                            <li class="fa fa-star-half-empty"></li>
+                        </ul>
+                    </div>
+                </div> -->
+            
