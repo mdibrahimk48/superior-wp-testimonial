@@ -43,7 +43,7 @@ add_action( 'wp_enqueue_scripts', 'spwptm_enqueue_scripts' );
 **/
 function spwptm_enqueue_custom_admin_style() {
 	wp_register_style( 'spwptm-admin-style', plugins_url( 'css/spwptm-admin-style.css', __FILE__), false, '1.0.0' );
-	wp_enqueue_style( 'custom_wp_admin_css' );
+	wp_enqueue_style( 'spwptm-admin-style' );
 }
 add_action( 'admin_enqueue_scripts', 'spwptm_enqueue_custom_admin_style' );
 
