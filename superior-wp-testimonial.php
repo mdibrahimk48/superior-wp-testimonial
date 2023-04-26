@@ -184,11 +184,10 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 	/**
 	****************** spwptm shortcode ****************** 
 	*/
-		function shortcode_callback( $attributes, string $content, string $shortcode ) {
-			if ( ! is_array( $attributes ) ) {
-				$attributes = [];
-			}
-			
-			// do stuff
-		}	
+
+	function spwptm_testimonial_shortcode() {
+		add_shortcode( 'SPWPTESTIMONIAL', 'spwptm_testimonial_loop' );
+	}
+
+	add_action( 'init', 'spwptm_testimonial_shortcode' );
 ?>
