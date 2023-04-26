@@ -213,4 +213,31 @@ function spwptm_plugin_redirect(){
 	}
 }
 
+
+/**
+****************** Adds a submenu page under a custom post type parent. ******************
+**/
+function books_register_ref_page() {
+    add_submenu_page(
+        'edit.php?post_type=book',
+        __( 'Books Shortcode Reference', 'textdomain' ),
+        __( 'Shortcode Reference', 'textdomain' ),
+        'manage_options',
+        'books-shortcode-ref',
+        'books_ref_page_callback'
+    );
+}
+
+/**
+ * Display callback for the submenu page.
+ */
+function books_ref_page_callback() { 
+    ?>
+    <div class="wrap">
+        <h1><?php _e( 'Books Shortcode Reference', 'textdomain' ); ?></h1>
+        <p><?php _e( 'Helpful stuff here', 'textdomain' ); ?></p>
+    </div>
+    <?php
+}
+
 ?>
