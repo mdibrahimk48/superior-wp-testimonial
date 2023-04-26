@@ -136,11 +136,23 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 								<span class="post"><?php echo get_post_meta( get_the_ID(), 'testi_desig', true ); ?></span>
 							</div>
 							<ul class="rating">
+								<?php
+								$spwptm_client_review = get_post_meta( get_the_ID(), 'testi_rating', true);
+								
+								if($spwptm_client_review == 1){
+									echo "<li class='fa fa-star'></li>";
+								}elseif($spwptm_client_review == 2){
+									echo "<li class='fa fa-star'></li>";
+								}
+								
+								?>
+
+
+								<!-- <li class="fa fa-star"></li>
 								<li class="fa fa-star"></li>
 								<li class="fa fa-star"></li>
 								<li class="fa fa-star"></li>
-								<li class="fa fa-star"></li>
-								<li class="fa fa-star-half-empty"></li>
+								<li class="fa fa-star-half-empty"></li> -->
 							</ul>
 						</div>
 					</div>
