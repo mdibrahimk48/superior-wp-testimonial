@@ -99,95 +99,118 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 	}
 	add_action( 'init', 'spwptm_custom_post_type', 0 );
 	
-	}
+}
 
-	/**
+/**
 	****************** spwptm post loop function() ****************** 
-	**/
-	function spwptm_testimonial_loop(){ 
-		?>
-			<div id="testimonial-slider" class="owl-carousel">
-		<?php
-			// spwptm WP_Query arguments
-			$args = array(
-				'post_type'              => array( 'testimonial' ),
-				'post_status'            => array( 'publish' ),
-				'post_per_page'			 => 10
-			);
+**/
+function spwptm_testimonial_loop(){ 
+	?>
+		<div id="testimonial-slider" class="owl-carousel">
+	<?php
+		// spwptm WP_Query arguments
+		$args = array(
+			'post_type'              => array( 'testimonial' ),
+			'post_status'            => array( 'publish' ),
+			'post_per_page'			 => 10
+		);
 	
-			// spwptm loop query
-			$spwptm_query = new WP_Query( $args );
+		// spwptm loop query
+		$spwptm_query = new WP_Query( $args );
 	
-			// spwptm loop for post
-			if ( $spwptm_query->have_posts() ) {
-				while ( $spwptm_query->have_posts() ) {
-					$spwptm_query->the_post();
-					// post loop logic
-					?>
+		// spwptm loop for post
+		if ( $spwptm_query->have_posts() ) {
+			while ( $spwptm_query->have_posts() ) {
+				$spwptm_query->the_post();
+				// post loop logic
+				?>
 	
-					<div class="testimonial">
-						<div class="pic">
-							<img src="<?php echo get_the_post_thumbnail_url(get_the_ID(),'full'); ?>" alt="<?php the_title(); ?>">
+				<div class="testimonial">
+					<div class="pic">
+						<img src="<?php echo get_the_post_thumbnail_url(get_the_ID(),'full'); ?>" alt="<?php the_title(); ?>">
+					</div>
+					<h3 class="title"><?php the_title(); ?></h3>
+					<p class="description"><?php the_excerpt(); ?></p>
+					<div class="testimonial-content">
+						<div class="testimonial-profile">
+							<h3 class="name"><?php echo get_post_meta( get_the_ID(), 'testi_name', true ); ?></h3>
+							<span class="post"><?php echo get_post_meta( get_the_ID(), 'testi_desig', true ); ?></span>
 						</div>
-						<h3 class="title"><?php the_title(); ?></h3>
-						<p class="description"><?php the_excerpt(); ?></p>
-						<div class="testimonial-content">
-							<div class="testimonial-profile">
-								<h3 class="name"><?php echo get_post_meta( get_the_ID(), 'testi_name', true ); ?></h3>
-								<span class="post"><?php echo get_post_meta( get_the_ID(), 'testi_desig', true ); ?></span>
-							</div>
-							<ul class="rating">
+						<ul class="rating">
 
-								<?php
-								//rating print
+							<?php
+							//rating print
 								$spwptm_client_review = get_post_meta( get_the_ID(), 'testi_rating', true);
 								
-								if($spwptm_client_review == 1){
-									echo "<li class='fa fa-star'></li>";
-								}elseif($spwptm_client_review == 2){
-									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li>";
-								}elseif($spwptm_client_review == 3){
-									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
-								}elseif($spwptm_client_review == 4){
-									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
-								}elseif($spwptm_client_review == 5){
-									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
-								}elseif($spwptm_client_review == "1.5"){
-									echo "<li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
-								}elseif($spwptm_client_review == "2.5"){
-									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
-								}elseif($spwptm_client_review == "3.5"){
-									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
-								}elseif($spwptm_client_review == "4.5"){
-									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
-								}else{
-									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
-								}								
-								?>
+							if($spwptm_client_review == 1){
+								echo "<li class='fa fa-star'></li>";
+							}elseif($spwptm_client_review == 2){
+								echo "<li class='fa fa-star'></li><li class='fa fa-star'></li>";
+							}elseif($spwptm_client_review == 3){
+								echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
+							}elseif($spwptm_client_review == 4){
+								echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
+							}elseif($spwptm_client_review == 5){
+								echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
+							}elseif($spwptm_client_review == "1.5"){
+								echo "<li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
+							}elseif($spwptm_client_review == "2.5"){
+								echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
+							}elseif($spwptm_client_review == "3.5"){
+								echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
+							}elseif($spwptm_client_review == "4.5"){
+								echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
+							}else{
+								echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
+							}								
+							?>
 
-							</ul>
-						</div>
+						</ul>
 					</div>
-	
-				<?php }
-			} else {
-				// no posts found
-			}
-	
-			// Restore original Post Data
-			wp_reset_postdata();
-		
-		?>
-			</div> 
-		<?php }
-		
-	/**
-	****************** spwptm shortcode ****************** 
-	**/
+				</div>
 
-	function spwptm_testimonial_shortcode() {
-		add_shortcode( 'SPWPTESTIMONIAL', 'spwptm_testimonial_loop' );
+			<?php }
+		} else {
+			// no posts found
+		}
+	
+		// Restore original Post Data
+		wp_reset_postdata();
+		
+	?>
+		</div> 
+	<?php 
+}
+		
+/**
+****************** spwptm shortcode ****************** 
+**/
+
+function spwptm_testimonial_shortcode() {
+	add_shortcode( 'SPWPTESTIMONIAL', 'spwptm_testimonial_loop' );
+}
+
+add_action( 'init', 'spwptm_testimonial_shortcode' );
+
+
+/**
+****************** spwptm redirect to plugin's setting page ****************** 
+**/
+register_activation_hook(__FILE__, 'spwptm_plugin_activate');
+add_action('admin_init', 'spwptm_plugin_redirect');
+
+function spwptm_plugin_activate(){
+	add_option('spwptm_plugin_do_activation_redirect', true);
+}
+
+function spwptm_plugin_redirect(){
+	if(get_option('spwptm_plugin_do_activation_redirect', false)){
+		delete_option('spwptm_plugin_do_activation_redirect');
+		if(!isset($_GET['active-multi']))
+		{
+			wp_redirect("edit.php?post_type=testimonial");
+		}
 	}
+}
 
-	add_action( 'init', 'spwptm_testimonial_shortcode' );
 ?>
