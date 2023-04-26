@@ -102,7 +102,7 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 	}
 
 	/**
-	* spwptm post loop function()
+	****************** spwptm post loop function() ****************** 
 	*/
 	function spwptm_testimonial_loop(){ 
 		?>
@@ -176,8 +176,19 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 	
 			// Restore original Post Data
 			wp_reset_postdata();
-		}
+		
 		?>
-			</div>
-		<?php	
+			</div> 
+		<?php }
+		
+	/**
+	****************** spwptm shortcode ****************** 
+	*/
+		function shortcode_callback( $attributes, string $content, string $shortcode ) {
+			if ( ! is_array( $attributes ) ) {
+				$attributes = [];
+			}
+			
+			// do stuff
+		}	
 ?>
