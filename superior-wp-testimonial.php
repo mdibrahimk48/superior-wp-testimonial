@@ -21,6 +21,7 @@
 function spwptm_enqueue_styles() {
 	wp_enqueue_style( 'spwptm-owl-carousel', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css' );
 	wp_enqueue_style( 'spwptm-owl-theme', 'https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css' );
+	wp_enqueue_style( 'spwptm-fontawesome', plugins_url( 'css/fontawesome-all.min.css', __FILE__) );
 	wp_enqueue_style( 'spwptm-style', plugins_url( 'css/spwptm_style.css', __FILE__) );
 }
 add_action( 'wp_enqueue_scripts', 'spwptm_enqueue_styles' );
@@ -101,27 +102,27 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 	}
 
 	/**
-	* spwptm post loop()
+	* spwptm post loop function()
 	*/
 	function spwptm_testimonial_loop(){ 
 		?>
 			<div id="testimonial-slider" class="owl-carousel">
 		<?php
-			// WP_Query arguments
+			// spwptm WP_Query arguments
 			$args = array(
 				'post_type'              => array( 'testimonial' ),
 				'post_status'            => array( 'publish' ),
 				'post_per_page'			 => 10
 			);
 	
-			// The Query
+			// spwptm loop query
 			$spwptm_query = new WP_Query( $args );
 	
-			// The Loop
+			// spwptm loop for post
 			if ( $spwptm_query->have_posts() ) {
 				while ( $spwptm_query->have_posts() ) {
 					$spwptm_query->the_post();
-					// do something
+					// post loop logic
 					?>
 	
 					<div class="testimonial">
@@ -136,11 +137,34 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 								<span class="post"><?php echo get_post_meta( get_the_ID(), 'testi_desig', true ); ?></span>
 							</div>
 							<ul class="rating">
-								<li class="fa fa-star"></li>
-								<li class="fa fa-star"></li>
-								<li class="fa fa-star"></li>
-								<li class="fa fa-star"></li>
-								<li class="fa fa-star-half-empty"></li>
+
+								<?php
+								//rating print
+								$spwptm_client_review = get_post_meta( get_the_ID(), 'testi_rating', true);
+								
+								if($spwptm_client_review == 1){
+									echo "<li class='fa fa-star'></li>";
+								}elseif($spwptm_client_review == 2){
+									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li>";
+								}elseif($spwptm_client_review == 3){
+									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
+								}elseif($spwptm_client_review == 4){
+									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
+								}elseif($spwptm_client_review == 5){
+									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
+								}elseif($spwptm_client_review == "1.5"){
+									echo "<li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
+								}elseif($spwptm_client_review == "2.5"){
+									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
+								}elseif($spwptm_client_review == "3.5"){
+									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
+								}elseif($spwptm_client_review == "4.5"){
+									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fas fa-star-half'></li>";
+								}else{
+									echo "<li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li><li class='fa fa-star'></li>";
+								}								
+								?>
+
 							</ul>
 						</div>
 					</div>
