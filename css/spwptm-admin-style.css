@@ -22,3 +22,19 @@
     padding: 10px;
     margin-left: 10px;
 }
+.lnclrX {
+	clear: both;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+.dev-desig {
+    font-size: 15px;
+    font-weight: bold;
+}
+.dev-name {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+.dev-intro {
+    font-size: 15px;
+}
