@@ -26,12 +26,13 @@ function spwptm_elements_settings_pages() {
             
             <form action="options.php" method="post">
                 <?php wp_nonce_field('update-options'); ?>
-
-                <input type="text" name="color_theme" value="<?php echo get_option('color_theme') ?>" required/><br/>
-                <input type="text" name="plugin_url" value="<?php echo get_option('plugin_url') ?>" required/><br/><br/>
+                <label name="color_theme" for="color_theme">Color Theme: </label>
+                <input type="text" name="color_theme" value="<?php echo get_option('color_theme') ?>" class="color-picker" required/><br/><br/>
+                <label name="hover_color" for="hover_color">Hover Color: </label>
+                <input type="text" name="hover_color" value="<?php echo get_option('hover_color') ?>" class="color-picker" required/><br/><br/>
 
                 <input type="hidden" name="action" value="update" />
-                <input type="hidden" name="page_options" value="color_theme, display_number, plugin_url" />
+                <input type="hidden" name="page_options" value="color_theme, hover_color" />
                 <input type="submit" name="submit" class="button" value="<?php _e( 'SAVE', 'spwptm' ); ?>" />
             </form>
         </div>
