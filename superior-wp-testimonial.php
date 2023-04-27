@@ -39,11 +39,13 @@ function spwptm_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'spwptm_enqueue_scripts' );
 
 /**
- * spwptm Register and enqueue a custom stylesheet in the WordPress admin.
+ * spwptm enqueue (Style & Script) a custom stylesheet in the WordPress admin.
 **/
 function spwptm_enqueue_custom_admin_style() {
-	wp_register_style( 'spwptm-admin-style', plugins_url( 'css/spwptm-admin-style.css', __FILE__), false, '1.0.0' );
-	wp_enqueue_style( 'spwptm-admin-style' );
+	wp_enqueue_style( 'spwptm-admin-style', plugins_url( 'css/spwptm-admin-style.css', __FILE__), false, '1.0.0' );
+	wp_enqueue_style('wp-color-picker');
+	wp_enqueue_script('iris-js', admin_url('js/iris.min.js'), array('jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch'), false, 1);
+	wp_enqueue_script('cp-active-js', plugins_url( 'js/cp-active.js', __FILE__), array('jquery'), '', true);
 }
 add_action( 'admin_enqueue_scripts', 'spwptm_enqueue_custom_admin_style' );
 
