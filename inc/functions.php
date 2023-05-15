@@ -51,4 +51,39 @@ function spwptm_elements_settings_pages() {
 <?php
 } 
 
-?>
+// Add the metabox to the Testimonial post type
+add_action('add_meta_boxes', 'spwptm_add_metabox');
+function spwptm_add_metabox() {
+    add_meta_box(
+        'spwptm_rating',
+        __('Rating', 'spwptm'),
+        'spwptm_rating_callback',
+        'testimonial',
+        'normal',
+        'default'
+    );
+}
+
+// Callback function for the Rating metabox
+function spwptm_rating_callback($post) {
+    wp_nonce_field('spwptm_save_rating', 'spwptm_rating_nonce');
+    $value = get_post_meta($post->ID, '_spwptm_rating', true);
+    echo '<label for="spwptm_rating_field">'.__('Enter the Rating: ', 'spwptm'). '</label>';
+    echo '<input type="number" id="spwptm_rating_field" name="spwptm_rating_field" min="0" max="5" step="0.1" value="'.esc_attr($value).'">';
+}
+
+// Save the metabox data
+add_action('save_post_testimonial', 'spwptm_save_rating_metabox');
+function spwptm_save_rating_metabox($post_id) {
+    // Verify the nonce before proceeding.
+    if (!isset($_POST['spwptm_rating_nonce']) || !wp_verify_nonce($_POST['spwptm_rating_nonce'], 'spwptm_save_rating')) {
+        return $post_id;
+    }
+
+    // Get the posted data and sanitize it for use as an HTML class.
+    $new_rating = isset($_POST['spwptm_rating_field']) ? floatval($_POST['spwptm_rating_field']) : '';
+    $new_rating = sanitize_html_class($new_rating);
+
+    // Update the meta field in the database.
+    update_post_meta($post_id, '_spwptm_rating', $new_rating);
+}

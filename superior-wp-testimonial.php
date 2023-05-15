@@ -115,7 +115,8 @@ if ( ! function_exists('spwptm_custom_post_type') ) {
 /**
 	****************** spwptm post loop function() ****************** 
 **/
-function spwptm_testimonial_loop(){ 
+function spwptm_testimonial_loop(){
+	ob_start(); 
 	?>
 		<div id="testimonial-slider" class="owl-carousel">
 	<?php
@@ -191,6 +192,7 @@ function spwptm_testimonial_loop(){
 	?>
 		</div> 
 	<?php 
+	return ob_get_clean();
 }
 		
 /**
@@ -227,7 +229,6 @@ function spwptm_plugin_redirect(){
 /**
 ****************** spwptm get all php file ****************** 
 **/
-foreach ( glob ( plugin_dir_path( __FILE__ ) ."inc/*.php" ) as $php_file )
+foreach ( glob ( plugin_dir_path( __FILE__ ) ."inc/*.php" ) as $php_file ){
 	include_once $php_file;
-
-?>
+}
