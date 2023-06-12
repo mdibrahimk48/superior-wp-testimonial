@@ -125,6 +125,7 @@ function spwptm_save_rating_metabox($post_id) {
 
     // Update the meta field in the database.
     update_post_meta($post_id, '_spwptm_rating', $new_rating);
+    
 }
 
 
