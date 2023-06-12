@@ -145,14 +145,14 @@ function spwptm_testimonial_loop(){
 					<p class="description"><?php the_excerpt(); ?></p>
 					<div class="testimonial-content">
 						<div class="testimonial-profile">
-							<h3 class="name"><?php echo get_post_meta( get_the_ID(), 'testi_name', true ); ?></h3>
-							<span class="post"><?php echo get_post_meta( get_the_ID(), 'testi_desig', true ); ?></span>
+							<h3 class="name"><?php echo get_post_meta( get_the_ID(), 'spwptm_testi_name_area', true ); ?></h3>
+							<span class="post"><?php echo get_post_meta( get_the_ID(), 'spwptm_rating_give', true ); ?></span>
 						</div>
 						<ul class="rating">
 
 							<?php
 							//rating print
-								$spwptm_client_review = get_post_meta( get_the_ID(), 'testi_rating', true);
+								$spwptm_client_review = get_post_meta( get_the_ID(), 'spwptm_testi_designation', true);
 								
 							if($spwptm_client_review == 1){
 								echo "<li class='fa fa-star'></li>";

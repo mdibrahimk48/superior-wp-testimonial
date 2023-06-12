@@ -55,6 +55,22 @@ function spwptm_elements_settings_pages() {
 add_action('add_meta_boxes', 'spwptm_add_metabox');
 function spwptm_add_metabox() {
     add_meta_box(
+        'spwptm_testi_name',
+        __('Name', 'spwptm'),
+        'spwptm_testi_name_callback',
+        'testimonial',
+        'normal',
+        'default'
+    );
+    add_meta_box(
+        'spwptm_testi_desig',
+        __('Designation', 'spwptm'),
+        'spwptm_testi_desig_callback',
+        'testimonial',
+        'normal',
+        'default'
+    );
+    add_meta_box(
         'spwptm_rating',
         __('Rating', 'spwptm'),
         'spwptm_rating_callback',
@@ -64,10 +80,33 @@ function spwptm_add_metabox() {
     );
 }
 
-// Callback function for the Rating metabox
+// 1. Callback function for the Name metabox
+function spwptm_testi_name_callback($post) {
+    wp_nonce_field('spwptm_save_testi_name', 'spwptm_testi_name_nonce');
+    $value = get_post_meta($post->ID, 'spwptm_testi_name_area', true);
+    echo '<label for="spwptm_testi_name_field">'.__('Enter the Name: ', 'spwptm'). '</label>';
+    echo '<input type="text" id="spwptm_testi_name_field" name="spwptm_testi_name_field" value="'.esc_attr($value).'">';
+}
+
+// Save the metabox data
+add_action('save_post_testimonial', 'spwptm_save_testi_name_metabox');
+function spwptm_save_testi_name_metabox($post_id) {
+    // Verify the nonce before proceeding.
+    if (!isset($_POST['spwptm_testi_name_nonce']) || !wp_verify_nonce($_POST['spwptm_testi_name_nonce'], 'spwptm_save_testi_name')) {
+        return $post_id;
+    }
+
+    // Get the posted data and sanitize it.
+    $new_name = isset($_POST['spwptm_testi_name_field']) ? sanitize_text_field($_POST['spwptm_testi_name_field']) : '';
+
+    // Update the meta field in the database.
+    update_post_meta($post_id, 'spwptm_testi_name_area', $new_name);
+}
+
+// 2. Callback function for the Rating metabox
 function spwptm_rating_callback($post) {
     wp_nonce_field('spwptm_save_rating', 'spwptm_rating_nonce');
-    $value = get_post_meta($post->ID, '_spwptm_rating', true);
+    $value = get_post_meta($post->ID, 'spwptm_rating_give', true);
     echo '<label for="spwptm_rating_field">'.__('Enter the Rating: ', 'spwptm'). '</label>';
     echo '<input type="number" id="spwptm_rating_field" name="spwptm_rating_field" min="0" max="5" step="0.1" value="'.esc_attr($value).'">';
 }
@@ -85,5 +124,29 @@ function spwptm_save_rating_metabox($post_id) {
     $new_rating = sanitize_html_class($new_rating);
 
     // Update the meta field in the database.
-    update_post_meta($post_id, '_spwptm_rating', $new_rating);
+    update_post_meta($post_id, 'spwptm_rating_give', $new_rating);
+}
+
+
+// 3. Callback function for the Designation metabox
+function spwptm_testi_desig_callback($post) {
+    wp_nonce_field('spwptm_save_testi_desig', 'spwptm_testi_desig_nonce');
+    $value = get_post_meta($post->ID, 'spwptm_testi_designation', true);
+    echo '<label for="spwptm_testi_desig_field">'.__('Enter the Designation: ', 'spwptm'). '</label>';
+    echo '<input type="text" id="spwptm_testi_desig_field" name="spwptm_testi_desig_field" value="'.esc_attr($value).'">';
+}
+
+// Save the metabox data
+add_action('save_post_testimonial', 'spwptm_save_testi_desig_metabox');
+function spwptm_save_testi_desig_metabox($post_id) {
+    // Verify the nonce before proceeding.
+    if (!isset($_POST['spwptm_testi_desig_nonce']) || !wp_verify_nonce($_POST['spwptm_testi_desig_nonce'], 'spwptm_save_testi_desig')) {
+        return $post_id;
+    }
+
+    // Get the posted data and sanitize it.
+    $new_desig = isset($_POST['spwptm_testi_desig_field']) ? sanitize_text_field($_POST['spwptm_testi_desig_field']) : '';
+
+    // Update the meta field in the database.
+    update_post_meta($post_id, 'spwptm_testi_designation', $new_desig);
 }
