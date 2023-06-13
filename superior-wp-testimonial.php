@@ -229,6 +229,8 @@ function spwptm_plugin_redirect(){
 /**
 ****************** spwptm get all php file ****************** 
 **/
-foreach ( glob ( plugin_dir_path( __FILE__ ) ."inc/*.php" ) as $php_file ){
+foreach (glob(plugin_dir_path ( __FILE__ )."inc/*.php" ) as $php_file ){
 	include_once $php_file;
 }
+// $php_file = plugin_dir_path( __FILE__ )."inc/spwptm-dynamic-css.php";
+// require_once $php_file;

@@ -36,7 +36,7 @@
 .testimonial .title{
     font-size: 16px;
     font-weight: 700;
-    color: #eabd44;
+    /* color: #eabd44; */
     text-transform: uppercase;
     margin: 0 0 10px 0;
 }
@@ -99,7 +99,7 @@
     padding: 1px 5px;
     margin: 0;
     list-style: none;
-    background: #eabd44;
+    /* background: #eabd44; */
     position: absolute;
     right: 25px;
 }
